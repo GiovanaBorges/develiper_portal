@@ -1,0 +1,111 @@
+body {
+    background-color: #d4d4d4;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.delete {
+    color: #FF5A58;
+    text-decoration: none;
+}
+
+.delete:hover {
+    color: #f82623;
+    text-decoration: underline;
+}
+
+.header {
+    background-color: #fff;
+    padding: 1rem 0;
+}
+
+.header h4 {
+    color: #000;
+    margin-top: 1rem;
+}
+
+.logo {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    display: inline-block;
+}
+
+.navbar {
+    font-weight: 200;
+    background-color: white;
+}
+
+.form-body {
+    -webkit-box-shadow: -70px 77px 32px -32px rgba(0, 0, 0, 0.32);
+    -moz-box-shadow: -70px 77px 32px -32px rgba(0, 0, 0, 0.32);
+    box-shadow: -70px 77px 32px -32px rgba(0, 0, 0, 0.32);
+}
+
+main {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+button.btnLogin {
+    width: 70%;
+    background-color: #FF5A58;
+    border-color: #FF5A58;
+}
+
+button.btnLogin:hover {
+    background-color: #f82623 !important;
+    border-color: #f82623 !important;
+}
+
+footer {
+    height: 3rem;
+    background-color: white;
+    color: black;
+    font-weight: 200;
+}
+
+label {
+    font-size: 1.3rem;
+}
+
+button {
+    font-weight: bold;
+}
+
+.form-login {
+    background-color: #000;
+    color: #fff;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    max-width: 750px;
+    margin: 10rem auto 0;
+}
+
+.form-login span {
+    color: #FF5A58;
+}
+
+.form-login input {
+    width: 100%;
+}
+
+form .button,
+.form-login .button {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.line-top {
+    margin-top: 3rem;
+}
+
+.box-white {
+    background-color: #ddd;
+    padding-bottom: 2rem;
+}
