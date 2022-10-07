@@ -24,6 +24,10 @@
         <div class="col-xl-10 col-md-12">
           <h4>CYPHERTRUST TOKENIZATION SERVER DEMO</h4>
         </div>
+        <div class="col-xl-10 col-md-12">
+          <a class="button-xsmall pure-button" style="font-size:0.9rem;" href="./">Sair</a>
+        </div>
       </div>
     </div>
+  </header>
   </header>

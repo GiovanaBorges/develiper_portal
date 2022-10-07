@@ -5,14 +5,22 @@ error_reporting(E_ALL);
 header_remove();
 session_start();
 
+include "config.php";
+
 
 $_SESSION['user'] = $_POST['user'];
 $_SESSION['passwd'] = $_POST['password'];
 
-$USR = $_SESSION['user'];
-$PWD = $_SESSION['passwd'];
+$USR = $_POST['user'];
+$PWD = $_POST['password'];
 
-include "config.php";
+// $USR = $_GET['user'];
+// $PWD = $_GET['password'];
+
+//$USR = $_SESSION['user'];
+//$PWD = $_SESSION['passwd'];
+
+
 
 $PDO = db_connect();
 //SQL para selecionar os registros
@@ -53,25 +61,29 @@ include "includes/header.php";
 							<?php 
 								while ($cliente = $stmt->fetch(PDO::FETCH_ASSOC)):
 									extract($cliente);
-									$token=$cardnumber;
-									$command="curl -tlsv1.2 -k -X POST -H 'Content-Type: application/json' -u $USR:$PWD -d '{\"tokengroup\" : \"$tokengroup\" , \"token\" : \"$cardnumber\" , \"tokentemplate\" : \"$template\"}' $detokurl";
-									$output = shell_exec($command);
-										if ($output == "NULL"){
-												print "Command: $command<BR><BR>";
-												print "Command Output: $output<BR><BR>"; 
-										}
+									
+									// $command="curl -tlsv1.2 -k -X POST -H 'Content-Type: application/json' -u $USR:$PWD -d '{\"tokengroup\" : \"$tokengroup\" , \"token\" : \"$cardnumber\" , \"tokentemplate\" : \"$template\"}' $detokurl";
+									// $output = shell_exec($command);
+									// if ($output == "NULL"){
+									// 	print "Command: $command<BR><BR>";
+									// 	print "Command Output: $output<BR><BR>"; 
+									// }
 
-									$obj = json_decode($output);
-									$cardnumber = $obj->{'data'};
+									//print_r($output);
+
+									// $obj = json_decode($output);
+									// $cardnumber = $obj->{'data'};
+
+									//$token=$cardnumber;
 								
 							?>
 								<tr>
 									<th scope="row"><?php echo $id; ?></th>
 									<td><?php echo $name; ?></td>
 									<td><?php echo $cardnumber; ?></td>
-									<td><?php echo $token; ?></td>
+									<td><?php //echo $token; ?></td>
 									<td><?php echo $template; ?></td>
-									<td><a class="delete" href="delete.php?id=<?php echo $id; ?>&user=<?php echo $USR; ?>&passwd=<?php echo $PWD; ?>">Delete</a></td>
+									<td><a class="delete" href="#" data-id="<?php echo $id; ?>" onclick="return confirm('Tem certeza de que deseja remover este cliente?');">Delete</a></td>
 								</tr>
 							<?php endwhile; ?>
 						</tbody>
@@ -79,6 +91,12 @@ include "includes/header.php";
 				</div>
 			</div>
 		</div>
+		<div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning-dell alert-warning" data-dismiss="alert" role="alert" style="display: none"></div>
+                <div class="alert alert-danger-dell" data-dismiss="alert" role="alert" style="display: none"></div>
+        	</div>
+        </div>
 	</div>
 
 	<div class="container box-white line-top">
@@ -98,6 +116,12 @@ include "includes/header.php";
 	</div>
 
 	<div class="container">
+		<div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" data-dismiss="alert" style="display: none"></div>
+                <div class="alert alert-danger" data-dismiss="alert" role="alert" style="display: none"></div>
+        	</div>
+        </div>
 		<div class="row">
 			<div class="col-md-12 line-top">
 				<h3>Tokenize New Data</h3>
@@ -134,18 +158,13 @@ include "includes/header.php";
 							<input type="hidden" name="user" value="<?php echo $USR; ?>">
 							<input type="hidden" name="passwd" value="<?php echo $PWD; ?>">
 							<input type="hidden" name="action" value="tokenize">
-							<button id="submitCustomer" class="btn btn-primary btnLogin">Criar</button>
+							<button id="submitCustomer" class="btn btn-primary btnLogin" type="submit">Criar</button>
 						</div>
 						</div>
 				</form>
 			</div>
 		</div>
-		<div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-success" role="alert" style="display: none"></div>
-                <div class="alert alert-danger" role="alert" style="display: none"></div>
-        	</div>
-        </div>
+		
 	</div>
 </main>
 <?php include "includes/footer.php"; ?>

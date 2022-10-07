@@ -11,19 +11,29 @@ $totoken = $_POST['data'];
 $name = $_POST['name'];
 $template = $_POST['template'];
 
+$sucesso = array(
+	'status' => 'sucesso',
+	'mensagem' => 'Usuario cadastrado com sucesso.'
+);
+$erro = array(
+	'status' => 'erro',
+	'mensagem' => 'Aconteceu um erro no cadastro , tente novamente!'
+);
+
 $data = array(
     'tokengroup' => '$tokengroup',
     'data' => '$totoken',
     'tokentemplate' => '$template'
 );
 
-$command="curl -tlsv1.2 -k -X POST -H 'Content-Type: application/json' -u $user:$passwd -d '{\"tokengroup\" : \"$tokengroup\" , \"data\" : \"$totoken\", \"tokentemplate\" : \"$template\" }' $tokurl";
+// $command="curl -tlsv1.2 -k -X POST -H 'Content-Type: application/json' -u $user:$passwd -d '{\"tokengroup\" : \"$tokengroup\" , \"data\" : \"$totoken\", \"tokentemplate\" : \"$template\" }' $tokurl";
 
-$output = shell_exec($command);
+// $output = shell_exec($command);
 // print_r($output);
-$obj = json_decode($output);
-$token = $obj->{'token'};
-//echo $token;
+// $obj = json_decode($output);
+// $token = $obj->{'token'};
+// echo $token;
+$token = "123456789";
 $PDO = db_connect();
 
 try {
@@ -46,9 +56,12 @@ try {
 
   if($stmt->execute()){
     //echo json_decode($output);
-    print_r($output);
+    echo json_encode($sucesso);
+    // print_r($output);
+    
   }
+  
 } catch (Exception $e) {
-    echo $e;
+    echo json_encode($erro);
 }
 
